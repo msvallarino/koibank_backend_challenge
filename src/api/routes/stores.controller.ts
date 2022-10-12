@@ -12,7 +12,7 @@ const route = Router();
 export default (app: Router) => {
   app.use('/stores', route);
 
-  route.get('/', getValidator, async (req: Request, res: Response, next: NextFunction) => {
+  route.get('/all', getValidator, async (req: Request, res: Response, next: NextFunction) => {
     try {
       // Finds the validation errors in this request and wraps them in an object with handy functions
       const errors = validationResult(req);
