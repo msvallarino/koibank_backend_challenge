@@ -1,0 +1,351 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Koibanx challenge",
+    "version": "1.0.0",
+    "contact": {
+      "email": "matias.vallarino@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/api/stores/all": {
+      "get": {
+        "tags": ["Stores"],
+        "description": "Get all Stores (paginated)",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "example": 2
+            },
+            "required": false,
+            "description": "Numeric ID of the page on pagination"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "example": 5
+            },
+            "required": false,
+            "description": "Numeric ID of the limit of stores per page on pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessfull request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllStores"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFound"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnprocessableEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/store": {
+      "post": {
+        "tags": ["Stores"],
+        "description": "Create new Store",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessfull request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedStore"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauthorized"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnprocessableEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Stores"
+    }
+  ],
+  "security": [
+    {
+      "basicAuth": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
+    "schemas": {
+      "NotFound": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": 404
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string",
+                "example": "Not Found"
+              }
+            }
+          }
+        }
+      },
+      "UnprocessableEntity": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": 422
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string",
+                "example": "Unprocessable Entity"
+              }
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": 401
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string",
+                "example": "Unauthorized"
+              }
+            }
+          }
+        }
+      },
+      "GetAllStores": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "example": 200
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "63463fb4fd83a54a336c0257"
+                    },
+                    "Comercio": {
+                      "type": "string",
+                      "example": "Magdalena"
+                    },
+                    "CUIT": {
+                      "type": "string",
+                      "example": "33-28652564-6"
+                    },
+                    "Conceptos": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "Licoreria"
+                      }
+                    },
+                    "Balance actual:": {
+                      "type": "string",
+                      "example": "$650.00"
+                    },
+                    "Activo": {
+                      "type": "string",
+                      "example": "Si"
+                    },
+                    "Ultima venta:": {
+                      "type": "string",
+                      "example": "2/11/2022 12:00:00 AM"
+                    }
+                  }
+                }
+              },
+              "total": {
+                "type": "integer",
+                "format": "int32",
+                "example": 51
+              },
+              "limit": {
+                "type": "integer",
+                "format": "int32",
+                "example": 10
+              },
+              "pages": {
+                "type": "integer",
+                "format": "int32",
+                "example": 6
+              },
+              "page": {
+                "type": "integer",
+                "format": "int32",
+                "example": 2
+              }
+            }
+          }
+        }
+      },
+      "CreatedStore": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "example": 200
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string",
+                "example": "Store successfully created"
+              },
+              "store": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Tienda de Testing2"
+                  },
+                  "cuit": {
+                    "type": "string",
+                    "example": "20-35960812-92"
+                  },
+                  "concepts": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "example": "concepts1"
+                    }
+                  },
+                  "currentBalance": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 250
+                  },
+                  "active": {
+                    "type": "boolean"
+                  },
+                  "lastSale": {
+                    "type": "string",
+                    "example": "2022-10-12T00:00:00.000Z"
+                  },
+                  "_id": {
+                    "type": "string",
+                    "example": "634640aafd83a54a336c0285"
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "example": "2022-10-12T04:20:58.538Z"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "example": "2022-10-12T04:20:58.538Z"
+                  },
+                  "__v": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
