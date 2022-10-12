@@ -4,7 +4,7 @@ import { badData } from '@hapi/boom';
 import StoreService from '../../services/store.service';
 import Logger from '../../utils/logger';
 import { getValidator, postValidator } from '../../validators/store.validator';
-import { QueryOptions } from '../../db/dal/Store';
+import { QueryOptions } from '../../db/dal/store.dal';
 import { formatGetAllStore } from '../../decoratos/stores.decorator';
 
 const route = Router();

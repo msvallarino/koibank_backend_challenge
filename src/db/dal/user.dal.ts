@@ -1,4 +1,4 @@
-import User, { IUser } from '../models/User';
+import User, { IUser } from '../models/User.model';
 
 export const create = async (newUser: IUser): Promise<IUser> => {
   const user = new User(newUser);

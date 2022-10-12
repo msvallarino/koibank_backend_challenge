@@ -1,5 +1,5 @@
-import { GetAllResponse } from '../db/dal/Store';
-import { IStore } from '../db/models/Store';
+import { GetAllResponse } from '../db/dal/store.dal';
+import { IStore } from '../db/models/Store.model';
 
 export type FormattedGetAllStores = {
   stores: any;

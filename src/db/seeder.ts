@@ -1,8 +1,8 @@
 import Logger from '../utils/logger';
 import UserService from '../services/user.service';
 import StoreService from '../services/store.service';
-import { IStore } from './models/Store';
-import { IUser } from './models/User';
+import { IStore } from './models/Store.model';
+import { IUser } from './models/User.model';
 
 // Total 50 Stores
 const stores: IStore[] = [

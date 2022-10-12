@@ -1,5 +1,5 @@
 import { PaginateOptions } from 'mongoose';
-import Store, { IStore, paginationCustomLabels } from '../models/Store';
+import Store, { IStore, paginationCustomLabels } from '../models/Store.model';
 
 export type QueryOptions = {
   page?: number;

@@ -1,6 +1,6 @@
 import { notFound, unauthorized } from '@hapi/boom';
-import { IUser } from '../db/models/User';
-import { create, getByName, verifyPass } from '../db/dal/User';
+import { IUser } from '../db/models/User.model';
+import { create, getByName, verifyPass } from '../db/dal/user.dal';
 import Logger from '../utils/logger';
 
 export default class UserService {

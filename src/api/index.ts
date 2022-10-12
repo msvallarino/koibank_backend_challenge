@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import stores from './routes/stores';
+import stores from './routes/stores.controller';
 
 export default () => {
   const app = Router();
