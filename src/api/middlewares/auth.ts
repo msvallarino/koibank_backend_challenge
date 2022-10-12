@@ -12,7 +12,12 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
       throw unauthorized();
     }
 
-    await UserService.validateUserCredentials(credentials.name, credentials.pass);
+    try {
+      await UserService.validateUserCredentials(credentials.name, credentials.pass);
+    } catch (error) {
+      throw unauthorized();
+    }
+
     next();
   } catch (err) {
     Logger.error(`Auth Middleware: ${err}`);

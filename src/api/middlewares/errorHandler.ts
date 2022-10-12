@@ -22,8 +22,6 @@ export const errorHandler = (err: ErrorRequestHandler, req: Request, res: Respon
     };
   }
 
-  console.log('llegue aca al eerror middleware che');
-  console.log(err);
   res.status(statusCode);
   res.send(message);
 };
