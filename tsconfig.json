@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "allowJs": true ,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./build" ,
+    "removeComments": true,
+    "esModuleInterop": true ,
+    "forceConsistentCasingInFileNames": true ,
+    "strict": true ,
+    "noImplicitAny": true ,
+    "skipLibCheck": true ,
+    "experimentalDecorators": true, // required for Decorators
+    "emitDecoratorMetadata": true,  // required for Decorators
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
